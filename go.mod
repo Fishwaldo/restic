@@ -6,7 +6,7 @@ require (
 	github.com/Azure/azure-sdk-for-go v55.6.0+incompatible
 	github.com/Azure/go-autorest/autorest v0.11.19 // indirect
 	github.com/Azure/go-autorest/autorest/to v0.4.0 // indirect
-	github.com/Fishwaldo/restic-nats-server/protocol v0.0.0-00010101000000-000000000000
+	github.com/Fishwaldo/restic-nats-server/protocol
 	github.com/cenkalti/backoff/v4 v4.1.1
 	github.com/cespare/xxhash/v2 v2.1.1
 	github.com/dnaeon/go-vcr v1.2.0 // indirect
@@ -38,6 +38,6 @@ require (
 	gopkg.in/tomb.v2 v2.0.0-20161208151619-d5d1b5820637
 )
 
-replace github.com/Fishwaldo/restic-nats-server/protocol => /home/fish/restic-nats-server/protocol
+//replace github.com/Fishwaldo/restic-nats-server/protocol => /home/fish/restic-nats-server/protocol
 
 go 1.14
