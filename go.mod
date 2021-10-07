@@ -6,7 +6,7 @@ require (
 	github.com/Azure/azure-sdk-for-go v55.6.0+incompatible
 	github.com/Azure/go-autorest/autorest v0.11.19 // indirect
 	github.com/Azure/go-autorest/autorest/to v0.4.0 // indirect
-	github.com/Fishwaldo/restic-nats-server/protocol
+	github.com/Fishwaldo/restic-nats-server/protocol v0.0.0-20211006112721-85bf5a959b04
 	github.com/cenkalti/backoff/v4 v4.1.1
 	github.com/cespare/xxhash/v2 v2.1.1
 	github.com/dnaeon/go-vcr v1.2.0 // indirect
