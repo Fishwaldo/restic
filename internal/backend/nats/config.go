@@ -10,10 +10,10 @@ import (
 
 // Config contains all configuration necessary to connect to a REST server.
 type Config struct {
-	Server	*url.URL
-	Credential string `option:"credentialfile" help:"Path to the NatsIO Credential File"`
-	Connections uint `option:"connections" help:"set a limit for the number of concurrent connections (default: 5)"`
-	Repo string
+	Server      *url.URL
+	Credential  string `option:"credentialfile" help:"Path to the NatsIO Credential File"`
+	Connections uint   `option:"connections" help:"set a limit for the number of concurrent connections (default: 5)"`
+	Repo        string
 }
 
 func init() {
@@ -46,7 +46,7 @@ func ParseConfig(s string) (interface{}, error) {
 		repo = cfg.Server.Path[1:]
 	}
 	if repo[len(repo)-1] == '/' {
-		repo = repo[0:len(repo)-1]
+		repo = repo[0 : len(repo)-1]
 	}
 	// replace any further slashes with . to specify a nested queue
 	repo = strings.Replace(repo, "/", ".", -1)

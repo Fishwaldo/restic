@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/Fishwaldo/restic-nats-server/protocol"
 	"github.com/nats-io/nats.go"
 	"github.com/restic/restic/internal/backend"
-	"github.com/Fishwaldo/restic-nats-server/protocol"
 	"github.com/restic/restic/internal/debug"
 	"github.com/restic/restic/internal/errors"
 	"github.com/restic/restic/internal/restic"
