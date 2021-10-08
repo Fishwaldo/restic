@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/restic/restic/internal/backend/nats/protocol"
 	"github.com/nats-io/nats.go"
 	"github.com/restic/restic/internal/backend"
+	"github.com/restic/restic/internal/backend/nats/protocol"
 	"github.com/restic/restic/internal/debug"
 	"github.com/restic/restic/internal/errors"
 	"github.com/restic/restic/internal/restic"
@@ -181,19 +181,21 @@ func (be *Backend) SendMsgWithReply(ctx context.Context, op protocol.NatsCommand
 	/* check the size of the Data Field. If its close to our NATS max payload size
 	 * then we will chunk the transfer instead
 	 */
-	log := func(msg string, args ...interface{}) {
-		fmt.Printf(msg, args...)
-		fmt.Println()
-	}
+	// log := func(msg string, args ...interface{}) {
+	// 	fmt.Printf(msg, args...)
+	// 	fmt.Println()
+	// }
 
 	var chunkedmsg *nats.Msg
 
-	chunkedmsg, err = protocol.ChunkSendRequestMsgWithContext(ctx, be.conn, msg, log)
+	chunkedmsg, err = protocol.ChunkSendRequestMsgWithContext(ctx, be.conn, msg, debug.Log)
 	if err != nil {
 		return errors.Wrapf(err, "ChunkRequestMsgWithContext Error: %d", len(msg.Data))
 	}
-	if err := be.enc.Decode(chunkedmsg.Subject, chunkedmsg.Data, recv); err != nil {
-		return errors.Wrapf(err, "Decode Failed %s %s %d", chunkedmsg.Header.Get("X-RNS-MSGID"), chunkedmsg.Header, len(chunkedmsg.Data))
+	if len(chunkedmsg.Data) > 0 {
+		if err := be.enc.Decode(chunkedmsg.Subject, chunkedmsg.Data, recv); err != nil {
+			return errors.Wrapf(err, "Decode Failed %s %s %d", chunkedmsg.Header.Get("X-RNS-MSGID"), chunkedmsg.Header, len(chunkedmsg.Data))
+		}
 	}
 	return nil
 }
@@ -317,6 +319,7 @@ func (b *Backend) Save(ctx context.Context, h restic.Handle, rd restic.RewindRea
 	if err := b.SendMsgWithReply(context.Background(), protocol.NatsSaveCmd, so, &result); err != nil {
 		return errors.Wrap(err, "Save: SendMsgWithReply Failed")
 	}
+	debug.Log("Save Result: %+v", result)
 	if result.Ok {
 		return nil
 	}
