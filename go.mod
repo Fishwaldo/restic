@@ -6,7 +6,6 @@ require (
 	github.com/Azure/azure-sdk-for-go v55.6.0+incompatible
 	github.com/Azure/go-autorest/autorest v0.11.19 // indirect
 	github.com/Azure/go-autorest/autorest/to v0.4.0 // indirect
-	github.com/Fishwaldo/restic-nats-server/protocol v0.0.0-20211006112721-85bf5a959b04
 	github.com/cenkalti/backoff/v4 v4.1.1
 	github.com/cespare/xxhash/v2 v2.1.1
 	github.com/dnaeon/go-vcr v1.2.0 // indirect
@@ -19,6 +18,7 @@ require (
 	github.com/kurin/blazer v0.5.3
 	github.com/minio/minio-go/v7 v7.0.12
 	github.com/minio/sha256-simd v1.0.0
+	github.com/nats-io/nats-server/v2 v2.6.1 // indirect
 	github.com/nats-io/nats.go v1.12.3
 	github.com/ncw/swift/v2 v2.0.0
 	github.com/pkg/errors v0.9.1
@@ -35,9 +35,8 @@ require (
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c
 	golang.org/x/text v0.3.6
 	google.golang.org/api v0.50.0
+	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/tomb.v2 v2.0.0-20161208151619-d5d1b5820637
 )
-
-//replace github.com/Fishwaldo/restic-nats-server/protocol => /home/fish/restic-nats-server/protocol
 
 go 1.14

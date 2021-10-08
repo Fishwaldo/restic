@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/Fishwaldo/restic-nats-server/protocol"
+	"github.com/restic/restic/internal/backend/nats/protocol"
 	"github.com/nats-io/nats.go"
 	"github.com/restic/restic/internal/backend"
 	"github.com/restic/restic/internal/debug"
@@ -48,7 +48,13 @@ func connectNats(be *Backend) error {
 	}
 
 	var options []nats.Option
-	options = append(options, nats.UserCredentials(be.cfg.Credential))
+	if len(be.cfg.Credential) > 0 {
+		options = append(options, nats.UserCredentials(be.cfg.Credential))
+	}
+	if len(be.cfg.Server.User.Username()) > 0 {
+		pass, _ := be.cfg.Server.User.Password()
+		options = append(options, nats.UserInfo(be.cfg.Server.User.Username(), pass))
+	}
 	options = append(options, nats.ClosedHandler(natsClosedCB))
 	options = append(options, nats.DisconnectHandler(natsDisconnectedCB))
 
@@ -175,9 +181,14 @@ func (be *Backend) SendMsgWithReply(ctx context.Context, op protocol.NatsCommand
 	/* check the size of the Data Field. If its close to our NATS max payload size
 	 * then we will chunk the transfer instead
 	 */
+	log := func(msg string, args ...interface{}) {
+		fmt.Printf(msg, args...)
+		fmt.Println()
+	}
+
 	var chunkedmsg *nats.Msg
 
-	chunkedmsg, err = protocol.ChunkSendRequestMsgWithContext(ctx, be.conn, msg, debug.Log)
+	chunkedmsg, err = protocol.ChunkSendRequestMsgWithContext(ctx, be.conn, msg, log)
 	if err != nil {
 		return errors.Wrapf(err, "ChunkRequestMsgWithContext Error: %d", len(msg.Data))
 	}
