@@ -28,6 +28,7 @@ jobs:
         target_repo_token: ${{ secrets.GITHUB_TOKEN }}
         upstream_sync_branch: master
         upstream_sync_repo: restic/restic
+        upstream_pull_args: '--allow-unrelated-histories'
 
         # Set test_mode true to run tests instead of the true action!!
         #test_mode: true
