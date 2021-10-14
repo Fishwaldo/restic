@@ -6,6 +6,8 @@ require (
 	github.com/Azure/azure-sdk-for-go v55.6.0+incompatible
 	github.com/Azure/go-autorest/autorest v0.11.19 // indirect
 	github.com/Azure/go-autorest/autorest/to v0.4.0 // indirect
+	github.com/Fishwaldo/go-logadapter v0.0.2
+	github.com/Fishwaldo/restic-nats v0.0.1-rc1
 	github.com/cenkalti/backoff/v4 v4.1.1
 	github.com/cespare/xxhash/v2 v2.1.1
 	github.com/dnaeon/go-vcr v1.2.0 // indirect
@@ -18,8 +20,6 @@ require (
 	github.com/kurin/blazer v0.5.3
 	github.com/minio/minio-go/v7 v7.0.14
 	github.com/minio/sha256-simd v1.0.0
-	github.com/nats-io/nats-server/v2 v2.6.1 // indirect
-	github.com/nats-io/nats.go v1.12.3
 	github.com/ncw/swift/v2 v2.0.0
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/profile v1.6.0
@@ -32,11 +32,12 @@ require (
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
 	golang.org/x/oauth2 v0.0.0-20210628180205-a41e5a781914
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c
+	golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e
 	golang.org/x/text v0.3.6
 	google.golang.org/api v0.50.0
-	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/tomb.v2 v2.0.0-20161208151619-d5d1b5820637
 )
 
 go 1.14
+
+//replace github.com/Fishwaldo/restic-nats => ../restic-nats
