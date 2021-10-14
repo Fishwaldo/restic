@@ -7,7 +7,7 @@ require (
 	github.com/Azure/go-autorest/autorest v0.11.19 // indirect
 	github.com/Azure/go-autorest/autorest/to v0.4.0 // indirect
 	github.com/Fishwaldo/go-logadapter v0.0.2
-	github.com/Fishwaldo/restic-nats v0.0.1-rc1
+	github.com/Fishwaldo/restic-nats v0.0.1-rc2
 	github.com/cenkalti/backoff/v4 v4.1.1
 	github.com/cespare/xxhash/v2 v2.1.1
 	github.com/dnaeon/go-vcr v1.2.0 // indirect
@@ -28,7 +28,7 @@ require (
 	github.com/restic/chunker v0.4.0
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
 	golang.org/x/oauth2 v0.0.0-20210628180205-a41e5a781914
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
